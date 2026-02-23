@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -133,9 +134,9 @@ function Login() {
           </div>
 
           <div className="text-center">
-            <a href="#forgot" className="text-white text-decoration-none small">
+            <Link to="/signup" className="text-white text-decoration-none small">
               Forgot password?
-            </a>
+            </Link>
           </div>
         </form>
       </div>
