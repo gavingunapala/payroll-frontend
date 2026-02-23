@@ -1,0 +1,84 @@
+.sidenav {
+  width: 280px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0b4a78 !important;
+}
+
+.sidenav__brand {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: #ffc107;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sidenav__nav {
+  height: calc(100% - 56px);
+  overflow: auto;
+}
+
+.sidenav-link {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.35rem;
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.sidenav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.sidenav-link.active {
+  background: rgba(25, 135, 84, 0.35);
+  color: #fff;
+}
+
+.sidenav-link--nested {
+  padding-left: 1.5rem;
+  font-size: 0.88rem;
+}
+
+.sidenav-group {
+  margin-bottom: 0.25rem;
+}
+
+.sidenav-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.sidenav-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.sidenav-toggle__chev {
+  transition: transform 150ms ease;
+  opacity: 0.9;
+}
+
+.sidenav-toggle.collapsed .sidenav-toggle__chev {
+  transform: rotate(-90deg);
+}
+
+.sidenav-children {
+  margin-top: 0.25rem;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+

@@ -2,6 +2,8 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
 import Signup from './pages/signup';
+import AppShell from './pages/AppShell';
+import Dashboard from './pages/Dashboard';
 import Footer from './components/Footer';
 
 function App() {
@@ -12,6 +14,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/app" element={<AppShell />}>
+              <Route index element={<Dashboard />} />
+            </Route>
           </Routes>
         </main>
         <Footer />
