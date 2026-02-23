@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: connect to auth API
+
+    if (username === "admin" && password === "admin") {
+      navigate("/app/ums/users");
+      return;
+    }
+
+    // Later: replace with real authentication
+    // For now just show invalid credentials
+    alert("Invalid username or password");
   };
 
   const PersonIcon = () => (

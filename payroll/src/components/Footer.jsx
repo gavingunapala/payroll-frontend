@@ -3,8 +3,12 @@ import React from "react";
 function Footer() {
   return (
     <footer
-      className="mt-auto"
       style={{
+        position: "fixed",   // Stick to screen
+        bottom: "0",
+        left: "0",
+        width: "100%",
+        zIndex: "1",         // Bottom layer
         background: "linear-gradient(180deg, #87CEEB 0%, #87CEEB 100%)",
         borderBottom: "4px solid #A97B23",
         padding: "0.75rem 1rem",
