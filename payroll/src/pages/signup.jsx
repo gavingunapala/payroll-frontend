@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Login() {
+function Signup() {
+  const [rank, setRank] = useState("");
   const [username, setUsername] = useState("");
+  const [userRole, setUserRole] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: connect to auth API
+    const formData = {
+      rank,
+      username,
+      userRole,
+      password,
+      confirmPassword,
+    };
+    console.log("Signup form submitted:", formData);
+    // TODO: connect to signup API
   };
+
+  // Hard-coded roles for now (will come from Backend later)
+  const ROLE_OPTIONS = ["admin", "clark", "user"];
 
   const PersonIcon = () => (
     <svg
@@ -47,7 +61,6 @@ function Login() {
 
   const bgStyle = { backgroundColor: "#244BC5" };
   const circlesStyle = {
-    // width: "min(60vw, 500px)",
     height: "auto",
     objectFit: "contain",
     objectPosition: "left bottom",
@@ -56,6 +69,7 @@ function Login() {
   const emblemStyle = { maxHeight: "180px" };
   const inputGroupStyle = { border: "1px solid #87CEEB" };
   const inputStyle = { border: "none", outline: "none" };
+  const selectStyle = { border: "none", outline: "none", backgroundColor: "transparent" };
 
   return (
     <div
@@ -96,12 +110,57 @@ function Login() {
               <input
                 type="text"
                 className="form-control border-0"
+                placeholder="RANK"
+                value={rank}
+                onChange={(e) => setRank(e.target.value)}
+                style={inputStyle}
+                aria-label="Rank"
+              />
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <div
+              className="input-group input-group-lg rounded bg-white"
+              style={inputGroupStyle}
+            >
+              <span className="input-group-text border-0 bg-white">
+                <PersonIcon />
+              </span>
+              <input
+                type="text"
+                className="form-control border-0"
                 placeholder="USERNAME"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 style={inputStyle}
                 aria-label="Username"
               />
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <div
+              className="input-group input-group-lg rounded bg-white"
+              style={inputGroupStyle}
+            >
+              <span className="input-group-text border-0 bg-white">
+                <PersonIcon />
+              </span>
+              <select
+                className="form-select border-0 form-control"
+                value={userRole}
+                onChange={(e) => setUserRole(e.target.value)}
+                style={selectStyle}
+                aria-label="User role"
+              >
+                <option value="">USER ROLE</option>
+                {ROLE_OPTIONS.map((role) => (
+                  <option key={role} value={role}>
+                    {role}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
@@ -119,7 +178,28 @@ function Login() {
                 placeholder="PASSWORD"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                style={inputStyle}
                 aria-label="Password"
+              />
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <div
+              className="input-group input-group-lg rounded bg-white"
+              style={inputGroupStyle}
+            >
+              <span className="input-group-text border-0 bg-white">
+                <LockIcon />
+              </span>
+              <input
+                type="password"
+                className="form-control border-0"
+                placeholder="CONFIRM PASSWORD"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={inputStyle}
+                aria-label="Confirm password"
               />
             </div>
           </div>
@@ -129,13 +209,13 @@ function Login() {
               type="submit"
               className="btn btn-light btn-lg fw-bold text-primary rounded py-3"
             >
-              LOGIN
+              SIGN UP
             </button>
           </div>
 
           <div className="text-center">
-            <Link to="/signup" className="text-white text-decoration-none small">
-              Forgot password?
+            <Link to="/" className="text-white text-decoration-none small">
+              Login
             </Link>
           </div>
         </form>
@@ -144,4 +224,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

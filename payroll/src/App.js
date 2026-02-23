@@ -1,16 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
+import Signup from './pages/signup';
 import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App d-flex flex-column">
-      <main className="flex-grow-1">
-        <Login />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="App d-flex flex-column">
+        <main className="flex-grow-1">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
