@@ -4,6 +4,7 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import AppShell from './pages/AppShell';
 import Dashboard from './pages/Dashboard';
+import AdminUsers from './pages/AdminUsers';
 import Footer from './components/Footer';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/app" element={<AppShell />}>
               <Route index element={<Dashboard />} />
+              <Route path="ums/users" element={<AdminUsers />} />
             </Route>
           </Routes>
         </main>
