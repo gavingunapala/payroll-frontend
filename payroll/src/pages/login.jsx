@@ -17,7 +17,7 @@ function Login() {
     dispatch(loginStart());
 
     if (username === "admin" && password === "admin") {
-      // Save user data to Redux state
+      // Save admin user data to Redux state
       dispatch(loginSuccess({
         user: {
           username: username,
@@ -27,6 +27,20 @@ function Login() {
         token: 'mock-jwt-token-' + Date.now()
       }));
       navigate("/app/ums/users");
+      return;
+    }
+
+    if (username === "user" && password === "user") {
+      // Save normal user data to Redux state
+      dispatch(loginSuccess({
+        user: {
+          username: username,
+          role: 'user',
+          email: 'user@payroll.com'
+        },
+        token: 'mock-jwt-token-' + Date.now()
+      }));
+      navigate("/app/user-dashboard");
       return;
     }
 
