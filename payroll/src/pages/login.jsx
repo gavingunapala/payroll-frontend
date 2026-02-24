@@ -1,23 +1,37 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { loginStart, loginSuccess, loginFailure } from "../store/slices/authSlice";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { loading, error } = useAppSelector(state => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    dispatch(loginStart());
+
     if (username === "admin" && password === "admin") {
+      // Save user data to Redux state
+      dispatch(loginSuccess({
+        user: {
+          username: username,
+          role: 'admin',
+          email: 'admin@payroll.com'
+        },
+        token: 'mock-jwt-token-' + Date.now()
+      }));
       navigate("/app/ums/users");
       return;
     }
 
-    // Later: replace with real authentication
-    // For now just show invalid credentials
-    alert("Invalid username or password");
+    // Handle invalid credentials
+    dispatch(loginFailure("Invalid username or password"));
   };
 
   const PersonIcon = () => (
@@ -138,10 +152,17 @@ function Login() {
             <button
               type="submit"
               className="btn btn-light btn-lg fw-bold text-primary rounded py-3"
+              disabled={loading}
             >
-              LOGIN
+              {loading ? 'LOGGING IN...' : 'LOGIN'}
             </button>
           </div>
+
+          {error && (
+            <div className="alert alert-danger text-center mb-2" role="alert">
+              {error}
+            </div>
+          )}
 
           <div className="text-center">
             <Link to="/signup" className="text-white text-decoration-none small">

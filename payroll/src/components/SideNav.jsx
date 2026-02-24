@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./SideNav.css";
 
 const DEFAULT_MENU = [
@@ -274,6 +274,7 @@ const DEFAULT_MENU = [
     id: "ums",
     label: "6. UMS",
     children: [
+      { id: "ums-user", label: "Users", to: "/app/ums/users" },
       { id: "ums-add-role", label: "Add Roles", to: "/app/ums/roles/add" },
       {
         id: "ums-role-permissions",
@@ -357,32 +358,28 @@ export default function SideNav({ menu, user, onLogout }) {
 
   return (
     <aside className="sidenav bg-primary text-white">
+      <Link to="/app" className="text-decoration-none text-dark">
+        <div className="sidenav__brand px-3 py-3 fw-bold">SLAF PAYROLL</div>
+      </Link>
 
-    <div className="sidenav__brand px-3 py-3 fw-bold">
-      SLAF PAYROLL
-    </div>
+      <nav className="sidenav__nav px-2 pb-3">
+        {resolvedMenu.map((item) => (
+          <SideNavItem
+            key={item.id}
+            item={item}
+            openMap={openMap}
+            setOpenMap={setOpenMap}
+          />
+        ))}
+      </nav>
 
-    <nav className="sidenav__nav px-2 pb-3">
-      {resolvedMenu.map((item) => (
-        <SideNavItem
-          key={item.id}
-          item={item}
-          openMap={openMap}
-          setOpenMap={setOpenMap}
-        />
-      ))}
-    </nav>
+      <div className="sidenav-footer p-3 border-top">
+        <div className="sidenav-user mb-2">👤 {user?.username || "Guest"}</div>
 
-    <div className="sidenav-footer p-3 border-top">
-      <div className="sidenav-user mb-2">
-        👤 {user?.name || "Guest"}
+        <button className="btn btn-light w-100" onClick={onLogout}>
+          Logout
+        </button>
       </div>
-
-      <button className="btn btn-light w-100" onClick={onLogout}>
-        Logout
-      </button>
-    </div>
-
-  </aside>
+    </aside>
   );
 }
