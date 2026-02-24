@@ -1,7 +1,10 @@
 .sidenav {
+  width: 280px;             /* Fixed width */
   height: 100vh;           /* Full screen height */
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 10;            /* Above fixed footer */
 }
 .sidenav__brand {
   font-size: 0.8rem;
@@ -13,6 +16,32 @@
 .sidenav__nav {
   flex: 1;
   overflow-y: auto;        /* Vertical scroll */
+  padding-bottom: 60px;     /* Space for fixed footer */
+}
+
+/* Custom scrollbar for Webkit browsers (Chrome, Safari, Edge) */
+.sidenav__nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidenav__nav::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.sidenav__nav::-webkit-scrollbar-thumb {
+  background: rgba(0, 123, 255, 0.6);  /* Bootstrap primary blue with transparency */
+  border-radius: 4px;
+}
+
+.sidenav__nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 123, 255, 0.8);  /* Darker blue on hover */
+}
+
+/* Custom scrollbar for Firefox */
+.sidenav__nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 123, 255, 0.6) rgba(0, 0, 0, 0.1);
 }
 
 
