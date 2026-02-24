@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useMemo, useState, useEffect } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import "./SideNav.css";
 
 const DEFAULT_MENU = [
@@ -350,11 +350,63 @@ function SideNavItem({ item, openMap, setOpenMap, level = 0 }) {
 }
 
 export default function SideNav({ menu, user, onLogout }) {
+  const location = useLocation();
   const resolvedMenu = useMemo(() => menu || DEFAULT_MENU, [menu]);
-  const [openMap, setOpenMap] = useState(() => ({
-    maintain: true,
-    "maintain-employee": true,
-  }));
+  
+  // Function to determine which modules should be open based on current path
+  const getInitialOpenMap = (pathname) => {
+    const openMap = {};
+    
+    // Check each module to see if the current path matches its children
+    resolvedMenu.forEach(module => {
+      if (module.children && module.children.length > 0) {
+        const hasActiveChild = module.children.some(child => {
+          if (child.to && pathname.includes(child.to)) {
+            return true;
+          }
+          // Check nested children
+          if (child.children && child.children.length > 0) {
+            return child.children.some(nestedChild => 
+              nestedChild.to && pathname.includes(nestedChild.to)
+            );
+          }
+          return false;
+        });
+        
+        if (hasActiveChild) {
+          openMap[module.id] = true;
+          
+          // Also open the parent child if it has nested children
+          module.children.forEach(child => {
+            if (child.children && child.children.length > 0) {
+              const hasActiveNestedChild = child.children.some(nestedChild => 
+                nestedChild.to && pathname.includes(nestedChild.to)
+              );
+              if (hasActiveNestedChild) {
+                openMap[child.id] = true;
+              }
+            }
+          });
+        }
+      }
+    });
+    
+    // Default to maintain module if no specific module is active
+    if (Object.keys(openMap).length === 0) {
+      openMap.maintain = true;
+      openMap["maintain-employee"] = true;
+    }
+    
+    return openMap;
+  };
+
+  const [openMap, setOpenMap] = useState(() => getInitialOpenMap(location.pathname));
+
+  // Update openMap when location changes
+  useEffect(() => {
+    const newOpenMap = getInitialOpenMap(location.pathname);
+    setOpenMap(newOpenMap);
+  }, [location.pathname, resolvedMenu]);
 
   return (
     <aside className="sidenav bg-primary text-white">
