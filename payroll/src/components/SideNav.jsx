@@ -357,6 +357,13 @@ export default function SideNav({ menu, user, onLogout }) {
   const getInitialOpenMap = (pathname) => {
     const openMap = {};
     
+    // If user is on dashboard and is a normal user, keep everything collapsed
+    if (pathname === '/app' || pathname === '/app/user-dashboard') {
+      if (user?.role === 'user') {
+        return openMap; // Return empty map to keep everything collapsed
+      }
+    }
+    
     // Check each module to see if the current path matches its children
     resolvedMenu.forEach(module => {
       if (module.children && module.children.length > 0) {
@@ -391,8 +398,8 @@ export default function SideNav({ menu, user, onLogout }) {
       }
     });
     
-    // Default to maintain module if no specific module is active
-    if (Object.keys(openMap).length === 0) {
+    // Default to maintain module if no specific module is active (only for admin)
+    if (Object.keys(openMap).length === 0 && user?.role !== 'user') {
       openMap.maintain = true;
       openMap["maintain-employee"] = true;
     }

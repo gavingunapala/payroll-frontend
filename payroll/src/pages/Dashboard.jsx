@@ -9,13 +9,26 @@ export default function Dashboard() {
       <h5 className="mb-2">Dashboard</h5>
       {isAuthenticated && user && (
         <div className="alert alert-success mb-3">
-          Welcome back, <strong>{user.username}</strong>! 
-          <br />
-          <small className="text-muted">Role: {user.role} | Email: {user.email}</small>
+          {user.role === 'user' ? (
+            <>
+              Welcome to Payroll System of Sri Lanka Air Force!
+              <br />
+              <small className="text-muted">Logged in as: <strong>{user.username}</strong></small>
+            </>
+          ) : (
+            <>
+              Welcome back, <strong>{user.username}</strong>! 
+              <br />
+              <small className="text-muted">Role: {user.role} | Email: {user.email}</small>
+            </>
+          )}
         </div>
       )}
       <p className="mb-0 text-muted">
-        Select a module from the left side navigation.
+        {user?.role === 'user' 
+          ? 'Your payroll information and services are available through the navigation menu.'
+          : 'Select a module from the left side navigation.'
+        }
       </p>
     </div>
   );

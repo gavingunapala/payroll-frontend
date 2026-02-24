@@ -5,6 +5,7 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import AppShell from './pages/AppShell';
 import Dashboard from './pages/Dashboard';
+import UserDashboard from './pages/UserDashboard';
 import AdminUsers from './pages/AdminUsers';
 import EmployeeProfile from './pages/EmployeeProfile';
 import EmployeeSearch from './pages/EmployeeSearch';
@@ -32,6 +33,7 @@ function App() {
               </ProtectedRoute>
             }>
               <Route index element={<Dashboard />} />
+              <Route path="user-dashboard" element={<UserDashboard />} />
               <Route path="ums/users" element={<AdminUsers />} />
               
               {/* Maintain Module Routes */}
