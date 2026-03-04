@@ -433,7 +433,7 @@ export default function SideNav({ menu, user, onLogout }) {
       </nav>
 
       <div className="sidenav-footer p-3 border-top">
-        <div className="sidenav-user mb-2">👤 {user?.username || "Guest"}</div>
+        <div className="sidenav-user mb-2">👤 {user || "Guest"}</div>
 
         <button className="btn btn-light w-100" onClick={onLogout}>
           Logout
