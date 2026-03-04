@@ -13,6 +13,9 @@ import PaySheet from './pages/PaySheet';
 import Category from './pages/Category';
 import BankCreate from './pages/BankCreate';
 import Footer from './components/Footer';
+import PayDistributionPage from 'pages/PayDistributionPage';
+import MasterInformation from 'pages/MasterInformation';
+import EdScreen from './pages/EdScreen';
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAppSelector(state => state.auth);
@@ -44,7 +47,7 @@ function App() {
               <Route path="maintain/bank/create" element={<BankCreate />} />
               
               {/* Placeholder routes for other menu items */}
-              <Route path="maintain/employee/pay-distribution" element={<Dashboard />} />
+              <Route path="maintain/employee/pay-distribution" element={<PayDistributionPage />} />
               <Route path="maintain/employee/confirm-trainee" element={<Dashboard />} />
               <Route path="maintain/employee/impressed-info" element={<Dashboard />} />
               <Route path="maintain/item/direct" element={<Dashboard />} />
@@ -79,12 +82,12 @@ function App() {
               <Route path="process/system" element={<Dashboard />} />
               
               {/* Inquiry Module Routes */}
-              <Route path="inquiry/master" element={<Dashboard />} />
-              <Route path="inquiry/ed" element={<Dashboard />} />
+              <Route path="inquiry/master" element={<MasterInformation/>} />
+              <Route path="inquiry/ed" element={<EdScreen />} />
               <Route path="inquiry/loan" element={<Dashboard />} />
               <Route path="inquiry/item" element={<Dashboard />} />
               <Route path="inquiry/calculator40" element={<Dashboard />} />
-              <Route path="inquiry/exception" element={<Dashboard />} />
+              <Route path="inquiry/exception" element={<Dashboard/>} />
               
               {/* Reports Module Routes */}
               <Route path="reports/payslip" element={<Dashboard />} />
