@@ -74,6 +74,7 @@ export const authService = {
   login: async (credentials) => {
     try {
       const response = await api.post('/auth/login', credentials);
+      // localStorage.setItem('user', JSON.stringify(response.data.user));
       return response.data;
     } catch (error) {
       throw error.response?.data || error.message;
@@ -96,25 +97,25 @@ export const authService = {
     }
   },
 
-  // Register new user
-  register: async (userData) => {
-    try {
-      const response = await api.post('/auth/register', userData);
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
+  // // Register new user
+  // register: async (userData) => {
+  //   try {
+  //     const response = await api.post('/auth/register', userData);
+  //     return response.data;
+  //   } catch (error) {
+  //     throw error.response?.data || error.message;
+  //   }
+  // },
 
-  // Get current user profile
-  getCurrentUser: async () => {
-    try {
-      const response = await api.get('/auth/me');
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
+  // // Get current user profile
+  // getCurrentUser: async () => {
+  //   try {
+  //     const response = await api.get('/auth/me');
+  //     return response.data;
+  //   } catch (error) {
+  //     throw error.response?.data || error.message;
+  //   }
+  // },
 
   // Refresh token
   refreshToken: async () => {

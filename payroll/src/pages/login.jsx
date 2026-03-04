@@ -23,11 +23,11 @@ function Login() {
       dispatch(loginSuccess({
         user: response.user,
         token: response.token,
-        // role: response.user.role 
+        role: response.role 
       }));
 
       // Navigate based on user role
-      if (response.user === 'Admin' || response.user === 'admin') {
+      if (response.role === 'Admin' || response.role === 'admin') {
         navigate("/app/ums/users");
       } else {
         navigate("/app/user-dashboard");
