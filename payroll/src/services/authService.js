@@ -51,7 +51,10 @@ export const authService = {
   // Logout user
   logout: async () => {
     try {
-      await api.post('/auth/logout');
+      const token = localStorage.getItem('token');
+      if (token) {
+        await api.post('/auth/logout', { token: token });
+      }
     } catch (error) {
       console.error('Logout error:', error);
     } finally {

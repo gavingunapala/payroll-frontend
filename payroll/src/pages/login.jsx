@@ -12,66 +12,30 @@ function Login() {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector(state => state.auth);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   dispatch(loginStart());
-
-  //   try {
-  //     const response = await authService.login({ username, password });
-      
-  //     dispatch(loginSuccess({
-  //       user: response.user,
-  //       token: response.token
-  //     }));
-
-  //     // Navigate based on user role
-  //     if (response.user.role === 'admin') {
-  //       navigate("/app/ums/users");
-  //     } else {
-  //       navigate("/app/user-dashboard");
-  //     }
-  //   } catch (error) {
-  //     dispatch(loginFailure(error.message || 'Login failed'));
-  //   }
-  // };
-
-  // for now use this login for testing 
-    const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     dispatch(loginStart());
 
-    if (username === "admin" && password === "admin") {
-      // Save admin user data to Redux state
+    try {
+      const response = await authService.login({ username, password });
+      
       dispatch(loginSuccess({
-        user: {
-          username: username,
-          role: 'admin',
-          email: 'admin@payroll.com'
-        },
-        token: 'mock-jwt-token-' + Date.now()
+        user: response.user,
+        token: response.token,
+        // role: response.user.role 
       }));
-      navigate("/app/ums/users");
-      return;
-    }
 
-    if (username === "user" && password === "user") {
-      // Save normal user data to Redux state
-      dispatch(loginSuccess({
-        user: {
-          username: username,
-          role: 'user',
-          email: 'user@payroll.com'
-        },
-        token: 'mock-jwt-token-' + Date.now()
-      }));
-      navigate("/app/user-dashboard");
-      return;
+      // Navigate based on user role
+      if (response.user === 'Admin' || response.user === 'admin') {
+        navigate("/app/ums/users");
+      } else {
+        navigate("/app/user-dashboard");
+      }
+    } catch (error) {
+      const errorMessage = error.message || error.error || 'Login failed';
+      dispatch(loginFailure(errorMessage));
     }
-
-    // Handle invalid credentials
-    dispatch(loginFailure("Invalid username or password"));
   };
 
   const PersonIcon = () => (
