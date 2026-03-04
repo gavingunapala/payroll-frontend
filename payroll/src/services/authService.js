@@ -9,11 +9,35 @@ const api = axios.create({
   },
 });
 
+// Helper function to check if token is expired
+const isTokenExpired = (token) => {
+  if (!token) return true;
+  
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const currentTime = Date.now() / 1000;
+    return payload.exp < currentTime;
+  } catch (error) {
+    return true; // If token is malformed, consider it expired
+  }
+};
+
 // Request interceptor to add auth token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
+    
+    // Check if token exists and is not expired
     if (token) {
+      if (isTokenExpired(token)) {
+        // Token expired, clear storage and redirect
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        alert('Token is expired you need to login');
+        window.location.href = '/';
+        return Promise.reject(new Error('Token expired'));
+      }
+      
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -29,6 +53,14 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Token expired or invalid
+      const errorMessage = error.response?.data?.message || 'Token is expired you need to login';
+      
+      // Show notification
+      if (typeof window !== 'undefined' && window.alert) {
+        alert(errorMessage);
+      }
+      
+      // Clear local storage and redirect
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       window.location.href = '/';
@@ -51,7 +83,10 @@ export const authService = {
   // Logout user
   logout: async () => {
     try {
-      await api.post('/auth/logout');
+      const token = localStorage.getItem('token');
+      if (token) {
+        await api.post('/auth/logout', { token: token });
+      }
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
