@@ -1,14 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { employeeService } from '../services/employeeService';
 
 export default function EmployeeSearch() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchBy, setSearchBy] = useState('name');
+  const [employees, setEmployees] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const mockEmployees = [
-    { id: 'EMP001', name: 'John Doe', department: 'Administration', designation: 'Manager' },
-    { id: 'EMP002', name: 'Jane Smith', department: 'Operations', designation: 'Supervisor' },
-    { id: 'EMP003', name: 'Mike Johnson', department: 'Technical', designation: 'Developer' },
-  ];
+  // Fetch employees on component mount
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  const fetchEmployees = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await employeeService.getAllEmployees();
+      setEmployees(data);
+    } catch (err) {
+      setError(err.message || 'Failed to fetch employees');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSearch = async () => {
+    if (!searchTerm.trim()) {
+      fetchEmployees();
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    try {
+      const searchParams = {
+        [searchBy]: searchTerm
+      };
+      const data = await employeeService.searchEmployees(searchParams);
+      setEmployees(data);
+    } catch (err) {
+      setError(err.message || 'Search failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="container-fluid">
@@ -46,10 +83,22 @@ export default function EmployeeSearch() {
                 <div className="col-md-2">
                   <label className="form-label">&nbsp;</label>
                   <div>
-                    <button className="btn btn-primary w-100">Search</button>
+                    <button 
+                      className="btn btn-primary w-100" 
+                      onClick={handleSearch}
+                      disabled={loading}
+                    >
+                      {loading ? 'Searching...' : 'Search'}
+                    </button>
                   </div>
                 </div>
               </div>
+
+              {error && (
+                <div className="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
 
               <div className="table-responsive">
                 <table className="table table-striped table-hover">
@@ -63,18 +112,32 @@ export default function EmployeeSearch() {
                     </tr>
                   </thead>
                   <tbody>
-                    {mockEmployees.map((employee) => (
-                      <tr key={employee.id}>
-                        <td>{employee.id}</td>
-                        <td>{employee.name}</td>
-                        <td>{employee.department}</td>
-                        <td>{employee.designation}</td>
-                        <td>
-                          <button className="btn btn-sm btn-outline-primary me-1">View</button>
-                          <button className="btn btn-sm btn-outline-secondary">Edit</button>
+                    {loading ? (
+                      <tr>
+                        <td colSpan="5" className="text-center">
+                          <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                          </div>
                         </td>
                       </tr>
-                    ))}
+                    ) : employees.length === 0 ? (
+                      <tr>
+                        <td colSpan="5" className="text-center">No employees found</td>
+                      </tr>
+                    ) : (
+                      employees.map((employee) => (
+                        <tr key={employee.id}>
+                          <td>{employee.id}</td>
+                          <td>{employee.name}</td>
+                          <td>{employee.department}</td>
+                          <td>{employee.designation}</td>
+                          <td>
+                            <button className="btn btn-sm btn-outline-primary me-1">View</button>
+                            <button className="btn btn-sm btn-outline-secondary">Edit</button>
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>

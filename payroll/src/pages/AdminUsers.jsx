@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import { employeeService } from "../services/employeeService";
 
 const MOCK_USERS = [
   { serviceNo: "0001", rank: "Test", name: "Test", username: "admin", role: "Admin", status: "Active" },
@@ -38,17 +39,38 @@ export default function AdminUsers() {
   const [search, setSearch] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
+  const [employees, setEmployees] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Fetch employees on component mount
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
+
+  const fetchEmployees = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await employeeService.getAllEmployees();
+      setEmployees(data);
+    } catch (err) {
+      setError(err.message || 'Failed to fetch employees');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return MOCK_USERS;
+    if (!search.trim()) return employees;
     const q = search.toLowerCase();
-    return MOCK_USERS.filter((u) =>
-      [u.serviceNo, u.rank, u.name, u.username, u.role, u.status]
+    return employees.filter((u) =>
+      [u.id, u.name, u.department, u.designation]
         .join(" ")
         .toLowerCase()
         .includes(q)
     );
-  }, [search]);
+  }, [search, employees]);
 
   const total = filtered.length;
   const totalPages = Math.max(1, Math.ceil(total / rowsPerPage));
@@ -112,31 +134,46 @@ export default function AdminUsers() {
               </tr>
             </thead>
             <tbody>
-              {pageItems.map((user) => (
-                <tr key={user.serviceNo}>
-                  <td>{user.serviceNo}</td>
-                  <td>{user.rank}</td>
-                  <td>{user.name}</td>
-                  <td>{user.username}</td>
-                  <td>{user.role}</td>
-                  <td>{user.status}</td>
-                  <td className="text-end">
-                    <button
-                      type="button"
-                      className="btn btn-link p-0"
-                      title="Delete"
-                    >
-                      <TrashIcon />
-                    </button>
+              {loading ? (
+                <tr>
+                  <td colSpan={7} className="text-center py-4">
+                    <div className="spinner-border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
                   </td>
                 </tr>
-              ))}
-              {pageItems.length === 0 && (
+              ) : error ? (
+                <tr>
+                  <td colSpan={7} className="text-center py-4 text-danger">
+                    {error}
+                  </td>
+                </tr>
+              ) : pageItems.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="text-center py-4 text-muted">
                     No users found.
                   </td>
                 </tr>
+              ) : (
+                pageItems.map((employee) => (
+                  <tr key={employee.id}>
+                    <td>{employee.id}</td>
+                    <td>{employee.rank || '-'}</td>
+                    <td>{employee.name}</td>
+                    <td>{employee.username || '-'}</td>
+                    <td>{employee.role || '-'}</td>
+                    <td>Active</td>
+                    <td className="text-end">
+                      <button
+                        type="button"
+                        className="btn btn-link p-0"
+                        title="Delete"
+                      >
+                        <TrashIcon />
+                      </button>
+                    </td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>

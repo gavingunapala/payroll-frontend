@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { loginStart, loginSuccess, loginFailure } from "../store/slices/authSlice";
+import { authService } from "../services/authService";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -11,7 +12,32 @@ function Login() {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector(state => state.auth);
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   dispatch(loginStart());
+
+  //   try {
+  //     const response = await authService.login({ username, password });
+      
+  //     dispatch(loginSuccess({
+  //       user: response.user,
+  //       token: response.token
+  //     }));
+
+  //     // Navigate based on user role
+  //     if (response.user.role === 'admin') {
+  //       navigate("/app/ums/users");
+  //     } else {
+  //       navigate("/app/user-dashboard");
+  //     }
+  //   } catch (error) {
+  //     dispatch(loginFailure(error.message || 'Login failed'));
+  //   }
+  // };
+
+  // for now use this login for testing 
+    const handleSubmit = (e) => {
     e.preventDefault();
 
     dispatch(loginStart());
