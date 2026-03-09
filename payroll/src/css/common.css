@@ -1,0 +1,94 @@
+/* src/css/common.css */
+
+.container {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  min-height: 100vh;
+}
+
+.section-card {
+  border: 1px solid #0078a8;
+  border-left: 4px solid #0078a8;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: #fff;
+}
+
+.section-title {
+  font-size: 14px;
+  fontWeight: bold;
+  color: #0078a8;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px 20px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.field-label {
+  font-size: 11px;
+  color: #555;
+  font-weight: 600;
+}
+
+.input, .select {
+  padding: 5px 8px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+}
+
+.input:disabled {
+  background-color: #eee;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Tabs */
+.tabs-container {
+  display: flex;
+  gap: 2px;
+}
+
+.tab {
+  padding: 8px 20px;
+  background-color: #d4d4d4;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+
+.tab.active {
+  background-color: #0f4c5c;
+  color: #fff;
+  font-weight: bold;
+}
+
+.tab-content {
+  border: 1px solid #bbb;
+  border-top: 3px solid #0f4c5c;
+  padding: 20px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+/* Common Buttons */
+.btn { border: none; padding: 8px; border-radius: 3px; cursor: pointer; color: #fff; }
+.btn-green { background-color: #28a745; }
+.btn-sky { background-color: #0078a8; }
+.btn-red { background-color: #d9534f; }
+.btn-blue-sm { background-color: #0056b3; font-size: 10px; padding: 0 10px; }
+
+.sys-footer { text-align: center; margin-top: 30px; color: #999; font-size: 10px; text-transform: uppercase; }
