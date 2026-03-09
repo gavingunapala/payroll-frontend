@@ -1,381 +1,108 @@
 import React, { useState } from 'react';
+import '../css/common.css';
+import '../css/employee.css'; 
 
 export default function EmployeeProfile() {
   const [activeTab, setActiveTab] = useState('service');
 
   return (
-    <div style={styles.container}>
+    <div className="container">
       {/* Service Number Row */}
-      <div style={styles.serviceNumberRow}>
-        <label style={styles.label}>Service Number <span style={styles.required}>*</span></label>
-        <input type="text" placeholder="Enter Service No." style={styles.serviceInput} />
+      <div className="service-number-row">
+        <label className="field-label" style={{marginBottom: 0}}>Service Number <span className="required">*</span></label>
+        <input type="text" placeholder="Enter Service No." className="service-input" />
       </div>
 
       {/* Employee Information Section */}
-      <div style={styles.employeeInfoSection}>
-        <div style={styles.sectionTitle}>Employee Information</div>
+      <div className="section-card">
+        <div className="section-title" style={{marginBottom: '15px'}}>Employee Information</div>
         
-        <div style={styles.formGrid}>
+        <div className="form-grid-3">
           {/* Column 1 */}
-          <div style={styles.column}>
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Rank <span style={styles.required}>*</span></label>
-              <select style={styles.select}>
+          <div className="column">
+            <div className="field-group">
+              <label className="field-label">Rank <span className="required">*</span></label>
+              <select className="select">
                 <option>Select Rank</option>
               </select>
             </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Initials</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Surname <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Scheme Type</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Type</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Branch/Trade <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Group <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Other Name</label>
-              <input type="text" style={styles.input} />
-            </div>
+            <div className="field-group"><label className="field-label">Initials</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Surname <span className="required">*</span></label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Scheme Type</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Type</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Branch/Trade <span className="required">*</span></label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Group <span className="required">*</span></label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Other Name</label><input type="text" className="input" /></div>
           </div>
 
           {/* Column 2 */}
-          <div style={styles.column}>
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Sex</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Marriage Status <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Date Of Birth <span style={styles.required}>*</span></label>
-              <input type="date" defaultValue="2026-02-18" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Religion</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Marriage Date</label>
-              <input type="text" placeholder="mm/ dd/ yyyy" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Nationality</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Rent</label>
-              <input type="text" style={styles.input} />
-            </div>
+          <div className="column">
+            <div className="field-group"><label className="field-label">Sex</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Marriage Status <span className="required">*</span></label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Date Of Birth <span className="required">*</span></label><input type="date" defaultValue="2026-02-18" className="input" /></div>
+            <div className="field-group"><label className="field-label">Religion</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Marriage Date</label><input type="text" placeholder="mm/ dd/ yyyy" className="input" /></div>
+            <div className="field-group"><label className="field-label">Nationality</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Rent</label><input type="text" className="input" /></div>
           </div>
 
           {/* Column 3 */}
-          <div style={styles.column}>
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Land Phone No</label>
-              <input type="text" style={styles.input} />
-            </div>
+          <div className="column">
+            <div className="field-group"><label className="field-label">Land Phone No</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Mobile No</label><input type="text" className="input" /></div>
             
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Mobile No</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            {/* Photo placeholder area */}
-            <div style={styles.photoArea}>
-              <div style={styles.photoPlaceholder}>
-                <span style={styles.noImageText}>No Image Available</span>
+            <div className="photo-area">
+              <div className="photo-placeholder">
+                <span className="no-image-text">No Image Available</span>
               </div>
-              <button style={styles.browseBtn}>Browse</button>
+              <button className="browse-btn">Browse</button>
             </div>
             
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Pay Unit <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Payment Mode</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Cost Center <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
+            <div className="field-group"><label className="field-label">Pay Unit <span className="required">*</span></label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Payment Mode</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Cost Center <span className="required">*</span></label><input type="text" className="input" /></div>
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div style={styles.tabsContainer}>
-        <div 
-          style={activeTab === 'service' ? {...styles.tab, ...styles.activeTab} : styles.tab}
-          onClick={() => setActiveTab('service')}
-        >
-          Service Information
-        </div>
-        <div 
-          style={activeTab === 'status' ? {...styles.tab, ...styles.activeTab} : styles.tab}
-          onClick={() => setActiveTab('status')}
-        >
-          Status Information
-        </div>
-        <div 
-          style={activeTab === 'salary' ? {...styles.tab, ...styles.activeTab} : styles.tab}
-          onClick={() => setActiveTab('salary')}
-        >
-          Salary Information
-        </div>
+      <div className="tabs-container">
+        {['service', 'status', 'salary'].map((tab) => (
+          <div 
+            key={tab}
+            className={`tab ${activeTab === tab ? 'active' : ''}`}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab.charAt(0).toUpperCase() + tab.slice(1)} Information
+          </div>
+        ))}
       </div>
 
       {/* Tab Content */}
-      <div style={styles.tabContent}>
+      <div className="tab-content">
         {activeTab === 'service' && (
-          <div style={styles.serviceGrid}>
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Enlisted Date <span style={styles.required}>*</span></label>
-              <input type="date" defaultValue="2026-02-18" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Increment Date</label>
-              <input type="date" defaultValue="2026-02-18" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Expected Retirement</label>
-              <input type="date" defaultValue="2026-02-18" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Cadet Number</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Posting/Attachment</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Formation <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>TA Number</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Living IN/Out</label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>Station <span style={styles.required}>*</span></label>
-              <input type="text" style={styles.input} />
-            </div>
-            
-            <div style={styles.fieldGroup}>
-              <label style={styles.fieldLabel}>GCB</label>
-              <input type="text" style={styles.input} />
-            </div>
+          <div className="form-grid-3">
+            <div className="field-group"><label className="field-label">Enlisted Date <span className="required">*</span></label><input type="date" defaultValue="2026-02-18" className="input" /></div>
+            <div className="field-group"><label className="field-label">Increment Date</label><input type="date" defaultValue="2026-02-18" className="input" /></div>
+            <div className="field-group"><label className="field-label">Expected Retirement</label><input type="date" defaultValue="2026-02-18" className="input" /></div>
+            <div className="field-group"><label className="field-label">Cadet Number</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Posting/Attachment</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Formation <span className="required">*</span></label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">TA Number</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Living IN/Out</label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">Station <span className="required">*</span></label><input type="text" className="input" /></div>
+            <div className="field-group"><label className="field-label">GCB</label><input type="text" className="input" /></div>
           </div>
         )}
         
-        {activeTab === 'status' && (
-          <div style={styles.placeholderContent}>Status Information Content</div>
-        )}
-        
-        {activeTab === 'salary' && (
-          <div style={styles.placeholderContent}>Salary Information Content</div>
+        {activeTab !== 'service' && (
+          <div className="sys-footer" style={{padding: '40px'}}>
+             {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Information Content
+          </div>
         )}
       </div>
+
+      <div className="sys-footer">All Right reserved 2026 - information technology unit</div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    fontFamily: 'Segoe UI, Arial, sans-serif',
-    fontSize: '12px',
-    backgroundColor: '#f5f5f5',
-    padding: '15px',
-    minHeight: '100vh',
-  },
-  serviceNumberRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    marginBottom: '15px',
-    padding: '10px',
-    backgroundColor: '#e8f4f8',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-  },
-  label: {
-    fontSize: '12px',
-    color: '#333',
-    fontWeight: '500',
-  },
-  required: {
-    color: '#d9534f',
-  },
-  serviceInput: {
-    padding: '4px 8px',
-    fontSize: '12px',
-    border: '1px solid #ccc',
-    borderRadius: '3px',
-    width: '150px',
-  },
-  employeeInfoSection: {
-    border: '1px solid #0078a8',
-    borderLeft: '4px solid #0078a8',
-    borderRadius: '4px',
-    padding: '15px',
-    marginBottom: '15px',
-    backgroundColor: '#fff',
-  },
-  sectionTitle: {
-    fontSize: '13px',
-    fontWeight: 'bold',
-    color: '#0078a8',
-    marginBottom: '15px',
-    marginTop: '-5px',
-  },
-  formGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
-    gap: '20px',
-  },
-  column: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-  },
-  fieldGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '3px',
-  },
-  fieldLabel: {
-    fontSize: '11px',
-    color: '#555',
-    fontWeight: '500',
-  },
-  input: {
-    padding: '5px 8px',
-    fontSize: '12px',
-    border: '1px solid #ccc',
-    borderRadius: '3px',
-    backgroundColor: '#f9f9f9',
-  },
-  select: {
-    padding: '5px 8px',
-    fontSize: '12px',
-    border: '1px solid #ccc',
-    borderRadius: '3px',
-    backgroundColor: '#f9f9f9',
-  },
-  photoArea: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '8px',
-    marginBottom: '10px',
-  },
-  photoPlaceholder: {
-    width: '100px',
-    height: '120px',
-    border: '1px solid #ccc',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f9f9f9',
-  },
-  noImageText: {
-    fontSize: '10px',
-    color: '#999',
-    textAlign: 'center',
-  },
-  browseBtn: {
-    padding: '5px 20px',
-    fontSize: '11px',
-    backgroundColor: '#a97b23',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '3px',
-    cursor: 'pointer',
-  },
-  tabsContainer: {
-    display: 'flex',
-    gap: '2px',
-    marginBottom: '0',
-  },
-  tab: {
-    padding: '8px 20px',
-    fontSize: '12px',
-    backgroundColor: '#d4d4d4',
-    color: '#333',
-    cursor: 'pointer',
-    border: '1px solid #bbb',
-    borderBottom: 'none',
-    borderRadius: '4px 4px 0 0',
-    fontWeight: '500',
-  },
-  activeTab: {
-    backgroundColor: '#0f4c5c',
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  tabContent: {
-    border: '1px solid #bbb',
-    borderTop: '3px solid #0f4c5c',
-    padding: '20px',
-    backgroundColor: '#fff',
-    minHeight: '200px',
-  },
-  serviceGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '15px 20px',
-  },
-  placeholderContent: {
-    fontSize: '14px',
-    color: '#666',
-    textAlign: 'center',
-    padding: '40px',
-  },
-};

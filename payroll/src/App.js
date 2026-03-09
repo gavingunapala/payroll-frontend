@@ -16,6 +16,19 @@ import Footer from './components/Footer';
 import PayDistributionPage from 'pages/PayDistributionPage';
 import MasterInformation from 'pages/MasterInformation';
 import EdScreen from './pages/EdScreen';
+import PrintBatch from './pages/PrintBatch';
+import EmployeeDashboard40 from './pages/EmployeeDashboard40'; 
+import LoanInformation from './pages/LoanInformation';
+import ExceptionData from './pages/ExceptionData';
+import WaterElectricity from './pages/WaterElectricity';
+import HalfPaySchedule from './pages/HalfPaySchedule';
+import PensionSchedule from './pages/PensionSchedule';
+import StoppaySchedule from './pages/StoppaySchedule';
+import SupplementaryPay from './pages/SupplementaryPay';
+import IncrementProcess from './pages/IncrementProcess';
+
+
+
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAppSelector(state => state.auth);
@@ -67,14 +80,14 @@ function App() {
               <Route path="schedule/fixed" element={<Dashboard />} />
               <Route path="schedule/variable" element={<Dashboard />} />
               <Route path="schedule/loan" element={<Dashboard />} />
-              <Route path="schedule/water" element={<Dashboard />} />
-              <Route path="schedule/halfpay" element={<Dashboard />} />
-              <Route path="schedule/pension" element={<Dashboard />} />
-              <Route path="schedule/stoppay" element={<Dashboard />} />
-              <Route path="schedule/supplementary" element={<Dashboard />} />
+              <Route path="schedule/water" element={<WaterElectricity />} />
+              <Route path="schedule/halfpay" element={<HalfPaySchedule />} />
+              <Route path="schedule/pension" element={<PensionSchedule />} />
+              <Route path="schedule/stoppay" element={<StoppaySchedule />} />
+              <Route path="schedule/supplementary" element={<SupplementaryPay/>} />
               
               {/* Process Module Routes */}
-              <Route path="process/init" element={<Dashboard />} />
+              <Route path="process/init" element={<IncrementProcess />} />
               <Route path="process/increment" element={<Dashboard />} />
               <Route path="process/pay" element={<Dashboard />} />
               <Route path="process/final" element={<Dashboard />} />
@@ -84,14 +97,14 @@ function App() {
               {/* Inquiry Module Routes */}
               <Route path="inquiry/master" element={<MasterInformation/>} />
               <Route path="inquiry/ed" element={<EdScreen />} />
-              <Route path="inquiry/loan" element={<Dashboard />} />
+              <Route path="inquiry/loan" element={<LoanInformation />} />
               <Route path="inquiry/item" element={<Dashboard />} />
-              <Route path="inquiry/calculator40" element={<Dashboard />} />
-              <Route path="inquiry/exception" element={<Dashboard/>} />
+              <Route path="inquiry/calculator40" element={<EmployeeDashboard40 />} />
+              <Route path="inquiry/exception" element={<ExceptionData/>} />
               
               {/* Reports Module Routes */}
               <Route path="reports/payslip" element={<Dashboard />} />
-              <Route path="reports/batch" element={<Dashboard />} />
+              <Route path="reports/batch" element={<PrintBatch />} />
               <Route path="reports/final" element={<Dashboard />} />
               <Route path="reports/other" element={<Dashboard />} />
               <Route path="reports/dynamic" element={<Dashboard />} />

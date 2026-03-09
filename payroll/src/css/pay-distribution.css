@@ -1,0 +1,47 @@
+/* src/css/pay-distribution.css */
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e8f4f8;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.search-group { display: flex; }
+.search-input { padding: 5px; border: 1px solid #ccc; border-radius: 3px 0 0 3px; }
+.search-btn { padding: 5px 10px; border: 1px solid #ccc; border-left: none; border-radius: 0 3px 3px 0; cursor: pointer; }
+
+.sub-header {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  margin: 20px 0 10px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.radio-container {
+  display: flex;
+  gap: 15px;
+  padding: 5px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+}
+
+.side-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 120px;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
