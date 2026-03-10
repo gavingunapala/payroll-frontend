@@ -4,10 +4,40 @@
 .search-box { background-color: #fff; padding: 2px 8px; border-radius: 2px; }
 .search-text { font-size: 11px; color: #333; }
 
-.top-section { padding: 20px 40px; border-bottom: 1px solid #ddd; display: flex; flex-direction: column; gap: 10px; }
-.field-row { display: flex; align-items: center; gap: 15px; }
-.label { font-size: 11px; font-weight: bold; width: 60px; }
-.input-small { width: 120px; padding: 2px; border: 1px solid #ccc; }
+.top-section {
+  padding: 20px 40px;
+  border-bottom: 2px solid #b8860b; /* Gold line back in */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #fff;
+  /* Crucial: ensures rows stay left */
+  align-items: flex-start; 
+}
+.field-row {
+  display: flex;
+  align-items: center;
+  /* Sets the exact gap between text and box */
+  gap: 15px; 
+  /* Crucial: prevents the row from stretching across the screen */
+  width: auto; 
+}
+.label {
+  font-size: 11px;
+  font-weight: bold;
+  /* Fixed width ensures inputs align vertically */
+  width: 80px; 
+  text-align: left;
+  /* Prevents label from shrinking */
+  flex-shrink: 0; 
+}
+.input-small {
+  width: 150px; /* Controlled width */
+  padding: 3px;
+  border: 1px solid #999;
+  height: 20px;
+  box-sizing: border-box;
+}
 
 .main-layout { display: flex; padding: 20px 40px; flex: 1; }
 .form-area { flex: 1; }
