@@ -4,14 +4,44 @@ import "../css/employee.css";
 import EmpServiceDetails from "../components/EmpServiceDetails";
 import EmpStatusDetails from "../components/EmpStatusDetails";
 import EmpSalaryDetails from "../components/EmpSalaryDetails";
+import { employeeService } from "../services/employeeService";
 
 export default function EmployeeProfile() {
   const [activeTab, setActiveTab] = useState("service");
+  const [serviceNumber, setServiceNumber] = useState("");
+  const [employeeData, setEmployeeData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const tabNames = {
     service: "Service Details",
     status: "Employee Status", 
     salary: "Salary Information"
+  };
+
+  // Handle service number input and fetch employee data
+  const handleServiceNumberSearchChange = async (e) => {
+    const value = e.target.value;
+    setServiceNumber(value);
+    
+    // Clear previous data and errors
+    setEmployeeData(null);
+    setError("");
+    
+    // Only fetch if service number has at least 3 characters
+    if (value.length >= 3) {
+      setLoading(true);
+      try {
+        const data = await employeeService.getEmployeeById(value);
+        setEmployeeData(data);
+        console.log("Employee data fetched:", data);
+      } catch (err) {
+        setError(err.message || "Employee not found");
+        console.error("Error fetching employee:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   // Industry standard handler using FormData
@@ -29,11 +59,17 @@ export default function EmployeeProfile() {
         <label className="field-label" style={{ marginBottom: 0 }}>
           Service Number <span className="required">*</span>
         </label>
-        <input
-          type="text"
-          placeholder="Enter Service No."
-          className="service-input"
-        />
+        <div className="service-input-wrapper">
+          <input
+            type="text"
+            placeholder="Enter Service No."
+            className="service-input"
+            value={serviceNumber}
+            onChange={handleServiceNumberSearchChange}
+          />
+          {loading && <span className="loading-indicator">Loading...</span>}
+        </div>
+        {error && <div className="error-message">{error}</div>}
       </div>
 
       {/* Employee Information Section */}
