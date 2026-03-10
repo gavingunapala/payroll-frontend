@@ -87,8 +87,8 @@ function App() {
               <Route path="schedule/supplementary" element={<SupplementaryPay/>} />
               
               {/* Process Module Routes */}
-              <Route path="process/init" element={<IncrementProcess />} />
-              <Route path="process/increment" element={<Dashboard />} />
+              <Route path="process/init" element={<Dashboard />} />
+              <Route path="process/increment" element={<IncrementProcess />} />
               <Route path="process/pay" element={<Dashboard />} />
               <Route path="process/final" element={<Dashboard />} />
               <Route path="process/payment" element={<Dashboard />} />
