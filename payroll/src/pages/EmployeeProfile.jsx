@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react"; // Added useRef
 import "../css/common.css";
 import "../css/employee.css";
 import EmpServiceDetails from "../components/EmpServiceDetails";
@@ -12,6 +12,10 @@ export default function EmployeeProfile() {
   const [employeeData, setEmployeeData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
+  // --- New State and Ref for Image ---
+  const [imagePreview, setImagePreview] = useState(null);
+  const fileInputRef = useRef(null);
 
   const tabNames = {
     service: "Service Details",
@@ -19,42 +23,66 @@ export default function EmployeeProfile() {
     salary: "Salary Information"
   };
 
-  // Handle service number input and fetch employee data
+  // Handle image selection
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Trigger hidden input when Browse is clicked
+  const handleBrowseClick = () => {
+    fileInputRef.current.click();
+  };
+
   const handleServiceNumberSearchChange = async (e) => {
     const value = e.target.value;
     setServiceNumber(value);
-    
-    // Clear previous data and errors
     setEmployeeData(null);
     setError("");
     
-    // Only fetch if service number has at least 3 characters
     if (value.length >= 3) {
       setLoading(true);
       try {
         const data = await employeeService.getEmployeeById(value);
         setEmployeeData(data);
-        console.log("Employee data fetched:", data);
       } catch (err) {
         setError(err.message || "Employee not found");
-        console.error("Error fetching employee:", err);
       } finally {
         setLoading(false);
       }
     }
   };
 
-  // Industry standard handler using FormData
-  const handleEmployeeSubmit = (e) => {
+  const handleEmployeeSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    
+    // Manually add image file to submission data
+    if (fileInputRef.current?.files[0]) {
+      formData.append("profileImage", fileInputRef.current.files[0]);
+    }
+
+    // Convert FormData to object for updateEmployee service
     const data = Object.fromEntries(formData.entries());
-    console.log("Employee Information Submitted:", data);
+    
+    try {
+      // Use employeeService to update employee
+      const result = await employeeService.updateEmployee(serviceNumber, data);
+      console.log("Employee updated successfully:", result);
+    } catch (error) {
+      console.error("Error updating employee:", error);
+      alert("Error updating employee data: " + (error.message || "Unknown error"));
+    }
   };
 
   return (
     <div className="container">
-      {/* Service Number Row */}
       <div className="service-number-row">
         <label className="field-label" style={{ marginBottom: 0 }}>
           Service Number <span className="required">*</span>
@@ -72,22 +100,18 @@ export default function EmployeeProfile() {
         {error && <div className="error-message">{error}</div>}
       </div>
 
-      {/* Employee Information Section */}
       <div className="section-card">
         <div className="section-title" style={{ marginBottom: "15px" }}>
           Employee Information
         </div>
 
-        {/* Form wrapper catches 'Enter' key automatically */}
         <form onSubmit={handleEmployeeSubmit}>
           <div className="form-grid-3">
             {/* Column 1 */}
             <div className="column">
               <div className="field-group">
-                <label className="field-label">
-                  Rank <span className="required">*</span>
-                </label>
-                <select className="select" name="rank">
+                <label className="field-label">Rank <span className="required">*</span></label>
+                <select className="select" name="rank" >
                   <option>Select Rank</option>
                   <option value="officer">Officer</option>
                 </select>
@@ -97,9 +121,7 @@ export default function EmployeeProfile() {
                 <input type="text" className="input" name="initials" />
               </div>
               <div className="field-group">
-                <label className="field-label">
-                  Surname <span className="required">*</span>
-                </label>
+                <label className="field-label">Surname <span className="required">*</span></label>
                 <input type="text" className="input" name="surname" />
               </div>
               <div className="field-group">
@@ -111,15 +133,11 @@ export default function EmployeeProfile() {
                 <input type="text" className="input" name="type" />
               </div>
               <div className="field-group">
-                <label className="field-label">
-                  Branch/Trade <span className="required">*</span>
-                </label>
+                <label className="field-label">Branch/Trade <span className="required">*</span></label>
                 <input type="text" className="input" name="branch" />
               </div>
               <div className="field-group">
-                <label className="field-label">
-                  Group <span className="required">*</span>
-                </label>
+                <label className="field-label">Group <span className="required">*</span></label>
                 <input type="text" className="input" name="group" />
               </div>
               <div className="field-group">
@@ -135,21 +153,12 @@ export default function EmployeeProfile() {
                 <input type="text" className="input" name="sex" />
               </div>
               <div className="field-group">
-                <label className="field-label">
-                  Marriage Status <span className="required">*</span>
-                </label>
+                <label className="field-label">Marriage Status <span className="required">*</span></label>
                 <input type="text" className="input" name="marriageStatus" />
               </div>
               <div className="field-group">
-                <label className="field-label">
-                  Date Of Birth <span className="required">*</span>
-                </label>
-                <input
-                  type="date"
-                  defaultValue="2026-02-18"
-                  className="input"
-                  name="dob"
-                />
+                <label className="field-label">Date Of Birth <span className="required">*</span></label>
+                <input type="date" defaultValue="2026-02-18" className="input" name="dob" />
               </div>
               <div className="field-group">
                 <label className="field-label">Religion</label>
@@ -157,12 +166,7 @@ export default function EmployeeProfile() {
               </div>
               <div className="field-group">
                 <label className="field-label">Marriage Date</label>
-                <input
-                  type="text"
-                  placeholder="mm/ dd/ yyyy"
-                  className="input"
-                  name="marriageDate"
-                />
+                <input type="date" defaultValue="2026-02-18" className="input" name="marriageDate" />
               </div>
               <div className="field-group">
                 <label className="field-label">Nationality</label>
@@ -185,20 +189,40 @@ export default function EmployeeProfile() {
                 <input type="text" className="input" name="mobileNo" />
               </div>
 
+              {/* IMAGE PART ADDED HERE */}
               <div className="photo-area">
                 <div className="photo-placeholder">
-                  <span className="no-image-text">No Image Available</span>
+                  {imagePreview ? (
+                    <img 
+                      src={imagePreview} 
+                      alt="Profile Preview" 
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                    />
+                  ) : (
+                    <span className="no-image-text">No Image Available</span>
+                  )}
                 </div>
-                {/* Changed to type="button" so it doesn't submit the form */}
-                <button type="button" className="browse-btn">
+                
+                {/* Hidden File Input */}
+                <input 
+                  type="file" 
+                  ref={fileInputRef} 
+                  onChange={handleImageChange} 
+                  accept="image/*" 
+                  style={{ display: "none" }} 
+                />
+
+                <button 
+                  type="button" 
+                  className="browse-btn" 
+                  onClick={handleBrowseClick}
+                >
                   Browse
                 </button>
               </div>
 
               <div className="field-group">
-                <label className="field-label">
-                  Pay Unit <span className="required">*</span>
-                </label>
+                <label className="field-label">Pay Unit <span className="required">*</span></label>
                 <input type="text" className="input" name="payUnit" />
               </div>
               <div className="field-group">
@@ -206,23 +230,15 @@ export default function EmployeeProfile() {
                 <input type="text" className="input" name="paymentMode" />
               </div>
               <div className="field-group">
-                <label className="field-label">
-                  Cost Center <span className="required">*</span>
-                </label>
+                <label className="field-label">Cost Center <span className="required">*</span></label>
                 <input type="text" className="input" name="costCenter" />
               </div>
             </div>
           </div>
-          {/* Hidden submit button to ensure 'Enter' works on all browsers */}
-          <button
-            type="submit"
-            style={{ display: "none" }}
-            aria-hidden="true"
-          />
+          <button type="submit" style={{ display: "none" }} aria-hidden="true" />
         </form>
       </div>
 
-      {/* Tabs */}
       <div className="tabs-container">
         {Object.keys(tabNames).map((tab) => (
           <div
@@ -235,21 +251,10 @@ export default function EmployeeProfile() {
         ))}
       </div>
 
-      {/* Tab Content */}
       <div className="tab-content">
-        {activeTab === "service" && (
-          <div>
-            <EmpServiceDetails />
-          </div>
-        )}
-
-        {activeTab == "status" && (
-          <EmpStatusDetails />
-        )}
-
-         {activeTab == "salary" && (
-          <EmpSalaryDetails />
-        )}
+        {activeTab === "service" && <EmpServiceDetails />}
+        {activeTab === "status" && <EmpStatusDetails />}
+        {activeTab === "salary" && <EmpSalaryDetails />}
       </div>
     </div>
   );
