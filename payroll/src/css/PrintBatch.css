@@ -28,9 +28,11 @@ border-radius: 2px;
 
 /* Fixes the squashed filters */
 .filter-section {
-padding: 20px;
-border-bottom: 2px solid #b8860b;
-background-color: #f9f9f9;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: none !important;      /* Removes all borders */
+  border-bottom: 0 !important;   /* Specifically kills the bottom line */
+  box-shadow: none !important;   /* Removes any glow/shadow that looks like a line */
 }
 
 .filter-row {
@@ -84,15 +86,19 @@ gap: 5px;
 }
 
 .table-area {
-flex: 1; /* Pushes footer down */
-background-color: #fff;
+  flex: 1;
+  background-color: #fff;
+  border: none !important;
 }
 
 /* Clean Single Footer */
 .blue-footer {
-background-color: #87ceeb !important;
-padding: 10px 20px;
-border-top: 1px solid #6bb5d8;
+  background-color: #87ceeb !important;
+  padding: 10px 20px;
+  margin-top: auto;
+  border: none !important;       /* Removes all borders */
+  border-top: 0 !important;      /* Specifically kills the top line */
+  box-shadow: none !important;   /* Removes any shadow */
 }
 
 .footer-content {
