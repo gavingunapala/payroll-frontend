@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "../css/common.css";
 import "../css/employee.css";
+import EmpServiceDetails from "../components/EmpServiceDetails";
+import EmpStatusDetails from "../components/EmpStatusDetails";
+import EmpSalaryDetails from "../components/EmpSalaryDetails";
 
 export default function EmployeeProfile() {
   const [activeTab, setActiveTab] = useState("service");
@@ -199,62 +202,17 @@ export default function EmployeeProfile() {
       {/* Tab Content */}
       <div className="tab-content">
         {activeTab === "service" && (
-          <div className="form-grid-3">
-            <div className="field-group">
-              <label className="field-label">
-                Enlisted Date <span className="required">*</span>
-              </label>
-              <input type="date" defaultValue="2026-02-18" className="input" />
-            </div>
-            {/* ... other service info fields ... */}
-            <div className="field-group">
-              <label className="field-label">Increment Date</label>
-              <input type="date" defaultValue="2026-02-18" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">Expected Retirement</label>
-              <input type="date" defaultValue="2026-02-18" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">Cadet Number</label>
-              <input type="text" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">Posting/Attachment</label>
-              <input type="text" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">
-                Formation <span className="required">*</span>
-              </label>
-              <input type="text" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">TA Number</label>
-              <input type="text" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">Living IN/Out</label>
-              <input type="text" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">
-                Station <span className="required">*</span>
-              </label>
-              <input type="text" className="input" />
-            </div>
-            <div className="field-group">
-              <label className="field-label">GCB</label>
-              <input type="text" className="input" />
-            </div>
+          <div>
+            <EmpServiceDetails />
           </div>
         )}
 
-        {activeTab !== "service" && (
-          <div className="sys-footer" style={{ padding: "40px" }}>
-            {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Information
-            Content
-          </div>
+        {activeTab == "status" && (
+          <EmpStatusDetails />
+        )}
+
+         {activeTab == "salary" && (
+          <EmpSalaryDetails />
         )}
       </div>
     </div>
