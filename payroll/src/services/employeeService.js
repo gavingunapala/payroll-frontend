@@ -69,19 +69,20 @@ export const employeeService = {
   // },
 
   // // Create new employee
-  // createEmployee: async (employeeData) => {
-  //   try {
-  //     const response = await api.post('/employees', employeeData);
-  //     return response.data;
-  //   } catch (error) {
-  //     throw error.response?.data || error.message;
-  //   }
-  // },
+  createEmployee: async (employeeData) => {
+    try {
+      const response = await api.post('/employees', employeeData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
+  },
 
   // Update employee
   updateEmployee: async (id, employeeData) => {
     try {
-      const response = await api.put(`/employees/${id}`, employeeData);
+       const response = await api.put(`/employees/1`, employeeData);
+      // const response = await api.put(`/employees/${id}`, employeeData);
       return response.data;
     } catch (error) {
       throw error.response?.data || error.message;

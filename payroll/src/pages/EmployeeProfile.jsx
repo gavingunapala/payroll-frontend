@@ -59,17 +59,26 @@ export default function EmployeeProfile() {
     }
   };
 
-  const handleEmployeeSubmit = (e) => {
+  const handleEmployeeSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
-    // Manually add the image file to the submission data
+    // Manually add image file to submission data
     if (fileInputRef.current?.files[0]) {
       formData.append("profileImage", fileInputRef.current.files[0]);
     }
 
+    // Convert FormData to object for updateEmployee service
     const data = Object.fromEntries(formData.entries());
-    console.log("Employee Information Submitted:", data);
+    
+    try {
+      // Use employeeService to update employee
+      const result = await employeeService.updateEmployee(serviceNumber, data);
+      console.log("Employee updated successfully:", result);
+    } catch (error) {
+      console.error("Error updating employee:", error);
+      alert("Error updating employee data: " + (error.message || "Unknown error"));
+    }
   };
 
   return (
@@ -157,7 +166,7 @@ export default function EmployeeProfile() {
               </div>
               <div className="field-group">
                 <label className="field-label">Marriage Date</label>
-                <input type="text" placeholder="mm/ dd/ yyyy" className="input" name="marriageDate" />
+                <input type="date" defaultValue="2026-02-18" className="input" name="marriageDate" />
               </div>
               <div className="field-group">
                 <label className="field-label">Nationality</label>
