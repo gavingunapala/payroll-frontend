@@ -102,15 +102,17 @@
 }
 
 .input,
-.select {
-  padding: 5px 8px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  background-color: #f9f9f9;
-  width: 100%;
-  box-sizing: border-box;
-  height: 28px;
+.select,
+input.input,
+select.select {
+  padding: 5px 8px !important;
+  font-size: 12px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 3px !important;
+  background-color: #f9f9f9 !important;
+  width: 200px !important;
+  box-sizing: border-box !important;
+  height: 28px !important;
 }
 
 .input:disabled {
