@@ -58,25 +58,25 @@ export const employeeService = {
     }
   },
 
-  // Search employees
-  searchEmployees: async (searchParams) => {
-    try {
-      const response = await api.get('/employees/search', { params: searchParams });
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
+  // // Search employees
+  // searchEmployees: async (searchParams) => {
+  //   try {
+  //     const response = await api.get('/employees/search', { params: searchParams });
+  //     return response.data;
+  //   } catch (error) {
+  //     throw error.response?.data || error.message;
+  //   }
+  // },
 
-  // Create new employee
-  createEmployee: async (employeeData) => {
-    try {
-      const response = await api.post('/employees', employeeData);
-      return response.data;
-    } catch (error) {
-      throw error.response?.data || error.message;
-    }
-  },
+  // // Create new employee
+  // createEmployee: async (employeeData) => {
+  //   try {
+  //     const response = await api.post('/employees', employeeData);
+  //     return response.data;
+  //   } catch (error) {
+  //     throw error.response?.data || error.message;
+  //   }
+  // },
 
   // Update employee
   updateEmployee: async (id, employeeData) => {
