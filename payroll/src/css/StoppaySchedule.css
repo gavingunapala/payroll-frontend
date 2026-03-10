@@ -1,0 +1,37 @@
+.content-wrapper { background-color: #fff; min-height: 100%; display: flex; flex-direction: column; }
+.header-bar { background-color: #87ceeb; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; }
+.header-title { color: #444; font-size: 13px; font-weight: bold; }
+.search-box { background-color: #fff; padding: 2px 8px; border-radius: 2px; }
+.search-text { font-size: 11px; color: #333; }
+
+.top-filter-section { padding: 15px 40px; border-bottom: 1px solid #ddd; background-color: #f9f9f9; }
+.field-row { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+.label { font-size: 11px; font-weight: bold; min-width: 80px; }
+.input-group { display: flex; align-items: center; gap: 10px; }
+.small-label { font-size: 10px; color: #666; }
+.small-input { width: 60px; padding: 2px; border: 1px solid #ccc; }
+
+.main-layout { display: flex; padding: 20px 40px; flex: 1; }
+.form-area { flex: 1; }
+.service-row { margin-bottom: 25px; }
+.input-medium { width: 150px; padding: 2px; border: 1px solid #ccc; }
+.info-box { width: 30px; height: 20px; border: 1px solid #ccc; background-color: #eee; }
+
+.bordered-section { border-top: 2px solid #87ceeb; padding-top: 15px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.column { display: flex; flex-direction: column; gap: 10px; }
+.f-label { font-size: 11px; color: #333; width: 100px; display: block; margin-bottom: 4px; }
+.input { width: 160px; padding: 2px 5px; border: 1px solid #ccc; font-size: 12px; }
+.input-large { width: 250px; padding: 2px 5px; border: 1px solid #ccc; font-size: 12px; }
+.select { width: 170px; padding: 2px; border: 1px solid #ccc; font-size: 12px; }
+
+.remarks-section { margin-top: 20px; }
+.textarea { width: 100%; height: 60px; border: 1px solid #ccc; resize: none; padding: 5px; }
+
+.button-column { width: 150px; display: flex; flex-direction: column; gap: 10px; padding-left: 40px; }
+.action-btn { padding: 2px 15px; background-color: #fff; border: 1px solid #ccc; font-size: 11px; cursor: pointer; box-shadow: 1px 1px 1px #ddd; }
+.delete-group { display: flex; align-items: center; gap: 5px; }
+.delete-label { font-size: 10px; }
+.spacer-80 { height: 80px; }
+
+.sys-footer { background-color: #87ceeb; text-align: right; padding: 8px 20px; font-size: 11px; font-weight: bold; margin-top: auto; }

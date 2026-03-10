@@ -1,62 +1,63 @@
-import React, { useState } from 'react';
+import React from 'react';
+import '../css/SupplementaryPay.css';
 
 export default function SupplementaryPay() {
   return (
-    <div style={styles.contentWrapper}>
+    <div className="content-wrapper">
       {/* Blue Header Bar */}
-      <div style={styles.headerBar}>
-        <span style={styles.headerTitle}>Supplementary Pay Schedule</span>
-        <div style={styles.searchBox}>
-          <span style={{ fontSize: '11px', color: '#333' }}>Officer Search... 🔍</span>
+      <div className="header-bar">
+        <span className="header-title">Supplementary Pay Schedule</span>
+        <div className="search-box">
+          <span className="search-text">Officer Search... 🔍</span>
         </div>
       </div>
 
       {/* Top Filter Section */}
-      <div style={styles.topFilterSection}>
-        <div style={styles.fieldRow}>
-          <label style={styles.label}>Select The Year and Month</label>
-          <div style={styles.inputGroup}>
-            <span style={styles.smallLabel}>Year</span>
-            <input type="text" style={styles.smallInput} defaultValue="2026" />
-            <span style={styles.smallLabel}>Month</span>
-            <input type="text" style={styles.smallInput} defaultValue="03" />
+      <div className="top-filter-section">
+        <div className="field-row">
+          <label className="label">Select The Year and Month</label>
+          <div className="input-group">
+            <span className="small-label">Year</span>
+            <input type="text" className="small-input" defaultValue="2026" />
+            <span className="small-label">Month</span>
+            <input type="text" className="small-input" defaultValue="03" />
           </div>
         </div>
       </div>
 
       {/* Main Content Area */}
-      <div style={styles.mainLayout}>
-        <div style={styles.formArea}>
+      <div className="main-layout">
+        <div className="form-area">
           {/* Service No and Item List Section */}
-          <div style={styles.topRow}>
-            <div style={styles.fieldRow}>
-              <label style={styles.label}>Service No</label>
-              <input type="text" style={styles.inputMedium} />
-              <div style={styles.infoBox}></div>
+          <div className="top-row">
+            <div className="field-row">
+              <label className="label">Service No</label>
+              <input type="text" className="input-medium" />
+              <div className="info-box"></div>
             </div>
             
-            <div style={styles.itemListContainer}>
-              <div style={styles.itemHeader}>Supplementary Item Codes</div>
-              <div style={styles.listBox}>
+            <div className="item-list-container">
+              <div className="item-header">Supplementary Item Codes</div>
+              <div className="list-box">
                 {/* Items like Arrears, Bonus, or Special Allowances */}
               </div>
             </div>
           </div>
 
           {/* Payment Details Form */}
-          <div style={styles.borderedSection}>
-            <div style={styles.formGrid}>
-              <div style={styles.column}>
-                <div style={styles.fieldRow}><label style={styles.fLabel}>Item Code</label><input type="text" style={styles.input} /></div>
-                <div style={styles.fieldRow}><label style={styles.fLabel}>Description</label><input type="text" style={styles.input} /></div>
-                <div style={styles.fieldRow}><label style={styles.fLabel}>Amount</label><input type="text" style={{...styles.input, fontWeight: 'bold'}} /></div>
+          <div className="bordered-section">
+            <div className="form-grid">
+              <div className="column">
+                <div className="field-row"><label className="f-label">Item Code</label><input type="text" className="input" /></div>
+                <div className="field-row"><label className="f-label">Description</label><input type="text" className="input" /></div>
+                <div className="field-row"><label className="f-label">Amount</label><input type="text" className="input-bold" /></div>
               </div>
 
-              <div style={styles.column}>
-                <div style={styles.fieldRow}><label style={styles.fLabel}>Authority</label><input type="text" style={styles.inputLarge} /></div>
-                <div style={styles.fieldRow}><label style={styles.fLabel}>Effective Date</label><input type="date" style={styles.input} /></div>
-                <div style={styles.fieldRow}><label style={styles.fLabel}>Taxable</label>
-                  <select style={styles.select}>
+              <div className="column">
+                <div className="field-row"><label className="f-label">Authority</label><input type="text" className="input-large" /></div>
+                <div className="field-row"><label className="f-label">Effective Date</label><input type="date" className="input" /></div>
+                <div className="field-row"><label className="f-label">Taxable</label>
+                  <select className="select">
                     <option>Yes</option>
                     <option>No</option>
                   </select>
@@ -66,70 +67,30 @@ export default function SupplementaryPay() {
           </div>
 
           {/* Remarks Section */}
-          <div style={{ marginTop: '20px' }}>
-            <label style={styles.fLabel}>Reason for Supplementary Payment</label>
-            <textarea style={styles.textarea} placeholder="Enter justification..."></textarea>
+          <div className="remarks-section">
+            <label className="f-label">Reason for Supplementary Payment</label>
+            <textarea className="textarea" placeholder="Enter justification..."></textarea>
           </div>
         </div>
 
         {/* Action Buttons Sidebar */}
-        <div style={styles.buttonColumn}>
-          <button style={styles.actionBtn}>Add</button>
-          <button style={styles.actionBtn}>Edit</button>
-          <div style={styles.deleteGroup}>
+        <div className="button-column">
+          <button className="action-btn">Add</button>
+          <button className="action-btn">Edit</button>
+          <div className="delete-group">
             <input type="checkbox" id="delSupp" />
-            <label htmlFor="delSupp" style={{ fontSize: '10px' }}>Delete Records</label>
+            <label htmlFor="delSupp" className="delete-label">Delete Records</label>
           </div>
-          <button style={styles.actionBtn}>Delete</button>
+          <button className="action-btn">Delete</button>
           
-          <div style={{ height: '80px' }}></div>
+          <div className="spacer-80"></div>
           
-          <button style={styles.actionBtn}>Reset</button>
-          <button style={styles.actionBtn}>Back</button>
+          <button className="action-btn">Reset</button>
+          <button className="action-btn">Back</button>
         </div>
       </div>
 
-      {/* Blue System Footer */}
-      <div style={styles.sysFooter}>All Right receved 2026- information technology unit</div>
+  
     </div>
   );
 }
-
-const styles = {
-  contentWrapper: { backgroundColor: '#fff', minHeight: '100%', display: 'flex', flexDirection: 'column' },
-  headerBar: { backgroundColor: '#87ceeb', padding: '8px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
-  headerTitle: { color: '#444', fontSize: '13px', fontWeight: 'bold' },
-  searchBox: { backgroundColor: '#fff', padding: '2px 8px', borderRadius: '2px' },
-  
-  topFilterSection: { padding: '15px 40px', borderBottom: '1px solid #ddd', backgroundColor: '#f9f9f9' },
-  fieldRow: { display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '10px' },
-  label: { fontSize: '11px', fontWeight: 'bold', minWidth: '80px' },
-  inputGroup: { display: 'flex', alignItems: 'center', gap: '10px' },
-  smallLabel: { fontSize: '10px', color: '#666' },
-  smallInput: { width: '60px', padding: '2px', border: '1px solid #ccc' },
-
-  mainLayout: { display: 'flex', padding: '20px 40px', flex: 1 },
-  formArea: { flex: 1 },
-  topRow: { display: 'flex', gap: '40px', marginBottom: '25px' },
-  inputMedium: { width: '150px', padding: '2px', border: '1px solid #ccc' },
-  infoBox: { width: '30px', height: '20px', border: '1px solid #ccc', backgroundColor: '#eee' },
-  
-  itemListContainer: { display: 'flex', flexDirection: 'column' },
-  itemHeader: { fontSize: '11px', fontWeight: 'bold', color: '#0056b3', border: '1px solid #ccc', borderBottom: 'none', padding: '2px 10px', width: 'fit-content' },
-  listBox: { width: '320px', height: '80px', border: '1px solid #87ceeb', backgroundColor: '#fff' },
-
-  borderedSection: { borderTop: '2px solid #87ceeb', paddingTop: '15px' },
-  formGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' },
-  column: { display: 'flex', flexDirection: 'column', gap: '8px' },
-  fLabel: { fontSize: '11px', color: '#333', width: '100px', display: 'block', marginBottom: '4px' },
-  input: { width: '160px', padding: '2px 5px', border: '1px solid #ccc', fontSize: '12px' },
-  inputLarge: { width: '250px', padding: '2px 5px', border: '1px solid #ccc', fontSize: '12px' },
-  select: { width: '80px', padding: '2px', border: '1px solid #ccc', fontSize: '12px' },
-  textarea: { width: '100%', height: '60px', border: '1px solid #ccc', resize: 'none', padding: '5px', fontSize: '12px' },
-
-  buttonColumn: { width: '150px', display: 'flex', flexDirection: 'column', gap: '10px', paddingLeft: '40px' },
-  actionBtn: { padding: '2px 15px', backgroundColor: '#fff', border: '1px solid #ccc', fontSize: '11px', cursor: 'pointer', boxShadow: '1px 1px 1px #ddd' },
-  deleteGroup: { display: 'flex', alignItems: 'center', gap: '5px' },
-
-  sysFooter: { backgroundColor: '#87ceeb', textAlign: 'right', padding: '8px 20px', fontSize: '11px', fontWeight: 'bold', marginTop: 'auto' }
-};
