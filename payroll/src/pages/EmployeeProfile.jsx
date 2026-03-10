@@ -87,7 +87,7 @@ export default function EmployeeProfile() {
                 <label className="field-label">
                   Rank <span className="required">*</span>
                 </label>
-                <select className="select" name="rank">
+                <select className="select" name="rank" >
                   <option>Select Rank</option>
                   <option value="officer">Officer</option>
                 </select>
@@ -243,13 +243,9 @@ export default function EmployeeProfile() {
           </div>
         )}
 
-        {activeTab == "status" && (
-          <EmpStatusDetails />
-        )}
+        {activeTab == "status" && <EmpStatusDetails />}
 
-         {activeTab == "salary" && (
-          <EmpSalaryDetails />
-        )}
+        {activeTab == "salary" && <EmpSalaryDetails />}
       </div>
     </div>
   );
