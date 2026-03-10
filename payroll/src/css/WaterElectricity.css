@@ -1,0 +1,35 @@
+.content-wrapper { background-color: #fff; min-height: 100%; display: flex; flex-direction: column; }
+.header-bar { background-color: #87ceeb; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; }
+.header-title { color: #444; font-size: 13px; font-weight: bold; }
+.search-box { background-color: #fff; padding: 2px 8px; border-radius: 2px; }
+.search-text { font-size: 11px; color: #333; }
+
+.top-section { padding: 20px 40px; border-bottom: 1px solid #ddd; display: flex; flex-direction: column; gap: 10px; }
+.field-row { display: flex; align-items: center; gap: 15px; }
+.label { font-size: 11px; font-weight: bold; width: 60px; }
+.input-small { width: 120px; padding: 2px; border: 1px solid #ccc; }
+
+.main-layout { display: flex; padding: 20px 40px; flex: 1; }
+.form-area { flex: 1; }
+.service-no-row { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 30px; padding-right: 150px; }
+
+.flex-container { display: flex; gap: 40px; align-items: flex-start; }
+.checkbox-section { flex: 1; }
+.sub-title { font-size: 11px; font-weight: bold; margin-bottom: 15px; }
+.month-grid { display: flex; flex-direction: column; gap: 8px; }
+.month-row { display: flex; gap: 40px; }
+.check-item { display: flex; align-items: center; gap: 8px; width: 100px; }
+.month-text { font-size: 11px; }
+
+.table-section { flex: 1; }
+.data-table { width: 100%; border-collapse: collapse; border: 1px solid #ccc; }
+.table-th { font-size: 11px; background-color: #f5f5f5; border: 1px solid #ccc; padding: 4px; }
+.table-td { border: 1px solid #eee; height: 20px; }
+
+.button-column { width: 150px; display: flex; flex-direction: column; gap: 10px; padding-left: 40px; }
+.action-btn { padding: 2px 15px; background-color: #fff; border: 1px solid #ccc; font-size: 11px; cursor: pointer; box-shadow: 1px 1px 1px #ddd; }
+.delete-group { display: flex; align-items: center; gap: 5px; }
+.delete-label { font-size: 10px; }
+.spacer-60 { height: 60px; }
+
+.sys-footer { background-color: #87ceeb; text-align: right; padding: 8px 20px; font-size: 11px; font-weight: bold; margin-top: auto; }
