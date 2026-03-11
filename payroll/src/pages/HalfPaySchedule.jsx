@@ -1,79 +1,101 @@
-import React from 'react';
-import '../css/HalfPaySchedule.css';
+import React, { useState } from 'react';
 
-export default function HalfPaySchedule() {
-  const days = Array.from({ length: 31 }, (_, i) => i + 1);
+const HalfPaySchedule = () => {
+  const [selectedDays, setSelectedDays] = useState(new Array(31).fill(false));
+
+  const toggleDay = (index) => {
+    const newDays = [...selectedDays];
+    newDays[index] = !newDays[index];
+    setSelectedDays(newDays);
+  };
+
+  const totalSelected = selectedDays.filter(day => day).length;
+
+  // Inline Styles to force the grid
+  const styles = {
+    mainLayout: { display: 'flex', padding: '20px 40px', alignItems: 'flex-start', gap: '20px' },
+    formArea: { flex: 1, maxWidth: '600px' },
+    daysGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(7, 1fr)', // FORCES 7 COLUMNS
+      gap: '10px',
+      border: '1px solid #87ceeb',
+      padding: '15px',
+      borderRadius: '4px',
+      backgroundColor: '#fff',
+      marginTop: '10px'
+    },
+    dayItem: { display: 'flex', alignItems: 'center', gap: '5px' },
+    summarySection: { display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' },
+    summaryRow: { display: 'flex', alignItems: 'center' },
+    label: { fontSize: '11px', fontWeight: 'bold', minWidth: '100px' }
+  };
 
   return (
-    <div className="content-wrapper">
-      <div className="header-bar">
-        <span className="header-title">Half Pay Schedule</span>
-        <div className="search-box">
-          <span className="search-text">Officer Search... 🔍</span>
-        </div>
+    <div className="content-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* Header */}
+      <div style={{ backgroundColor: '#87ceeb', padding: '8px 20px', display: 'flex', justifyContent: 'space-between' }}>
+        <span style={{ fontWeight: 'bold', fontSize: '13px' }}>Half Pay Schedule</span>
+        <div style={{ backgroundColor: '#fff', padding: '2px 8px' }}>Officer Search... 🔍</div>
       </div>
 
-      <div className="top-filter-section">
-        <div className="field-row">
-          <label className="label">Select The Year and Month</label>
-          <div className="input-group">
-            <span className="small-label">Year</span>
-            <input type="text" className="small-input" defaultValue="2021" />
-            <span className="small-label">Month</span>
-            <input type="text" className="small-input" defaultValue="10" />
-          </div>
-        </div>
-      </div>
-
-      <div className="main-layout">
-        <div className="form-area">
-          <div className="service-row">
-            <div className="field-row">
-              <label className="label">Service No</label>
-              <input type="text" className="input-medium" />
-              <div className="info-box"></div>
-            </div>
+      <div style={styles.mainLayout}>
+        <div style={styles.formArea}>
+          {/* Service No Row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
+            <span style={styles.label}>Service No</span>
+            <input type="text" style={{ width: '150px', border: '1px solid #ccc' }} />
           </div>
 
-          <div className="days-container">
-            <div className="days-header">Half Pay Days</div>
-            <div className="days-grid">
-              {days.map(day => (
-                <div key={day} className="day-item">
-                  <input type="checkbox" id={`day-${day}`} />
-                  <label htmlFor={`day-${day}`} className="day-label">{day}</label>
+          {/* Grid Container */}
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ fontSize: '11px', fontWeight: 'bold', color: '#0056b3' }}>Half Pay Days</div>
+            <div style={styles.daysGrid}>
+              {selectedDays.map((isSelected, i) => (
+                <div key={i} style={styles.dayItem}>
+                  <input 
+                    type="checkbox" 
+                    checked={isSelected} 
+                    onChange={() => toggleDay(i)} 
+                  />
+                  <span style={{ fontSize: '11px' }}>{i + 1}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="summary-section">
-            <div className="field-row">
-              <label className="label">Total Days</label>
-              <input type="text" className="input-small" />
+          {/* Summary Section */}
+          <div style={styles.summarySection}>
+            <div style={styles.summaryRow}>
+              <span style={styles.label}>Total Days</span>
+              <input type="text" style={{ width: '80px', border: '1px solid #ccc' }} value={totalSelected} readOnly />
             </div>
-            <div className="field-row">
-              <label className="label">Authority</label>
-              <input type="text" className="input-large" />
+            <div style={styles.summaryRow}>
+              <span style={styles.label}>Authority</span>
+              <input type="text" style={{ width: '300px', border: '1px solid #ccc' }} placeholder="Enter authority..." />
             </div>
           </div>
         </div>
 
-        <div className="button-column">
-          <button className="action-btn">Add</button>
-          <button className="action-btn">Edit</button>
-          <div className="delete-group">
-            <input type="checkbox" id="delCheck" />
-            <label htmlFor="delCheck" className="delete-label">Delete Records</label>
+        {/* Buttons Sidebar */}
+        <div style={{ width: '150px', display: 'flex', flexDirection: 'column', gap: '10px', paddingLeft: '40px' }}>
+          {['Add', 'Edit'].map(text => <button key={text} style={{ padding: '4px', border: '1px solid #ccc', cursor: 'pointer' }}>{text}</button>)}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <input type="checkbox" id="del" />
+            <label htmlFor="del" style={{ fontSize: '10px' }}>Delete Records</label>
           </div>
-          <button className="action-btn">Delete</button>
-
-          <div className="spacer-80"></div>
-
-          <button className="action-btn">Reset</button>
-          <button className="action-btn">Back</button>
+          <button style={{ padding: '4px', border: '1px solid #ccc' }}>Delete</button>
+          <div style={{ height: '80px' }}></div>
+          <button style={{ padding: '4px', border: '1px solid #ccc' }}>Reset</button>
+          <button style={{ padding: '4px', border: '1px solid #ccc' }}>Back</button>
         </div>
       </div>
+
+      <footer style={{ backgroundColor: '#87ceeb', textAlign: 'right', padding: '8px 20px', fontSize: '11px', fontWeight: 'bold', marginTop: 'auto' }}>
+        All Right received 2026 - information technology unit
+      </footer>
     </div>
   );
-}
+};
+
+export default HalfPaySchedule;
