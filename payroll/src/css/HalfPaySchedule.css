@@ -1,10 +1,24 @@
+/* Layout Wrappers */
 .content-wrapper {
     background-color: #fff;
-    min-height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+.main-layout {
+    display: flex;
+    padding: 20px 40px;
+    align-items: flex-start; /* Prevents form stretching */
+    flex: 1;
+}
+
+.form-area {
+    flex: 1;
+    max-width: 600px;
+}
+
+/* Header & Filter Bars */
 .header-bar {
     background-color: #87ceeb;
     padding: 8px 20px;
@@ -19,23 +33,18 @@
     font-weight: bold;
 }
 
-.search-box {
-    background-color: #fff;
-    padding: 2px 8px;
-    border-radius: 2px;
-}
-
 .top-filter-section {
     padding: 15px 40px;
     border-bottom: 1px solid #ddd;
     background-color: #f9f9f9;
 }
 
-.field-row {
+/* Form Fields */
+.field-row, .service-row {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Reduced to fix gap */
 }
 
 .label {
@@ -44,52 +53,9 @@
     min-width: 80px;
 }
 
-.input-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.small-label {
-    font-size: 10px;
-    color: #666;
-}
-
-.small-input {
-    width: 60px;
-    padding: 2px;
-    border: 1px solid #ccc;
-}
-
-.main-layout {
-    display: flex;
-    padding: 20px 40px;
-    flex: 1;
-}
-
-.form-area {
-    flex: 1;
-}
-
-.service-row {
-    margin-bottom: 25px;
-}
-
-.input-medium {
-    width: 150px;
-    padding: 2px;
-    border: 1px solid #ccc;
-}
-
-.info-box {
-    width: 30px;
-    height: 20px;
-    border: 1px solid #ccc;
-    background-color: #eee;
-}
-
+/* THE GRID FIX: Re-enabling 7 columns */
 .days-container {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .days-header {
@@ -100,13 +66,14 @@
 }
 
 .days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    display: grid; /* Essential for grid layout */
+    grid-template-columns: repeat(7, 1fr); /* Creates 7 columns */
     gap: 10px;
     max-width: 500px;
     border: 1px solid #87ceeb;
     padding: 15px;
     border-radius: 4px;
+    background-color: #fff;
 }
 
 .day-item {
@@ -119,24 +86,24 @@
     font-size: 11px;
 }
 
+/* Summary Section (Bottom Fields) */
 .summary-section {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    margin-top: 10px; /* Reduced gap */
 }
 
-.input-small {
-    width: 80px;
-    padding: 2px;
-    border: 1px solid #ccc;
+.summary-row {
+    display: flex;
+    align-items: center;
 }
 
-.input-large {
-    width: 300px;
-    padding: 2px;
-    border: 1px solid #ccc;
+.summary-row .label {
+    min-width: 100px; /* Aligns Total Days and Authority inputs */
 }
 
+/* Sidebar Buttons */
 .button-column {
     width: 150px;
     display: flex;
@@ -146,7 +113,7 @@
 }
 
 .action-btn {
-    padding: 2px 15px;
+    padding: 4px 15px;
     background-color: #fff;
     border: 1px solid #ccc;
     font-size: 11px;
@@ -154,20 +121,7 @@
     box-shadow: 1px 1px 1px #ddd;
 }
 
-.delete-group {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.delete-label {
-    font-size: 10px;
-}
-
-.spacer-80 {
-    height: 80px;
-}
-
+/* Footer */
 .sys-footer {
     background-color: #87ceeb;
     text-align: right;
