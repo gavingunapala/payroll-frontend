@@ -1,0 +1,32 @@
+.content-wrapper { background-color: #fff; min-height: 100%; display: flex; flex-direction: column; font-family: 'Segoe UI', Arial, sans-serif; }
+
+.header-bar { background-color: #87ceeb !important; padding: 8px 20px; display: flex; justify-content: space-between; align-items: center; }
+.header-title { color: #444 !important; font-size: 13px; font-weight: bold; }
+.search-box { background-color: #fff; padding: 2px 8px; border-radius: 2px; border: 1px solid #ccc; }
+.search-text { font-size: 11px; color: #333; }
+
+.main-area { flex: 1; display: flex; justify-content: center; align-items: center; background-color: #f0f2f5; padding: 20px; }
+.process-card { width: 450px; background-color: #fff; border: 1px solid #87ceeb; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 4px; }
+.card-header { background-color: #87ceeb; color: #fff; padding: 10px; font-weight: bold; text-align: center; font-size: 14px; }
+.card-body { padding: 25px; }
+
+.field-row { margin-bottom: 20px; }
+.label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 8px; }
+.input-group { display: flex; align-items: center; gap: 10px; }
+.small-label { font-size: 11px; color: #666; }
+.small-input { width: 60px; padding: 4px; border: 1px solid #ccc; text-align: center; }
+
+.status-box { background-color: #e8f4f8; padding: 10px; border-radius: 4px; border: 1px solid #bde0eb; margin-bottom: 20px; }
+.status-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+.status-highlight { color: #0056b3; font-weight: bold; }
+
+.console { background-color: #1e1e1e; height: 100px; padding: 10px; border-radius: 4px; overflow-y: auto; margin-bottom: 25px; }
+.log-text { color: #00ff00; font-size: 11px; font-family: monospace; margin-bottom: 4px; }
+.log-progress { color: #ffd700; font-size: 11px; font-family: monospace; font-weight: bold; }
+
+.button-row { display: flex; justify-content: center; gap: 15px; }
+.btn-run { background-color: #28a745; color: #fff; border: none; padding: 8px 25px; border-radius: 3px; cursor: pointer; font-weight: bold; }
+.btn-disabled { background-color: #94d3a2; color: #fff; border: none; padding: 8px 25px; border-radius: 3px; cursor: not-allowed; }
+.btn-cancel { background-color: #dc3545; color: #fff; border: none; padding: 8px 25px; border-radius: 3px; cursor: pointer; }
+
+.sys-footer { background-color: #87ceeb; text-align: right; padding: 8px 20px; font-size: 11px; font-weight: bold; margin-top: auto; }

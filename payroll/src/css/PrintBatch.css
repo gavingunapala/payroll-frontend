@@ -1,0 +1,128 @@
+.content-wrapper {
+background-color: #fff;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.header-bar {
+background-color: #87ceeb !important;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.header-title {
+color: #444 !important;
+font-size: 13px;
+font-weight: bold;
+}
+
+.search-box {
+background-color: #fff;
+padding: 2px 8px;
+border-radius: 2px;
+}
+
+/* Fixes the squashed filters */
+.filter-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: none !important;      /* Removes all borders */
+  border-bottom: 0 !important;   /* Specifically kills the bottom line */
+  box-shadow: none !important;   /* Removes any glow/shadow that looks like a line */
+}
+
+.filter-row {
+display: flex;
+justify-content: flex-start;
+align-items: flex-start;
+gap: 50px; /* Space between the columns */
+}
+
+.group-column {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.input-align-row {
+display: flex;
+align-items: center;
+gap: 10px;
+height: 25px;
+}
+
+.label-bold {
+font-size: 11px;
+font-weight: bold;
+margin-bottom: 5px;
+display: block;
+}
+
+.radio-label {
+font-size: 11px;
+display: flex;
+align-items: center;
+gap: 8px;
+cursor: pointer;
+white-space: nowrap;
+}
+
+.small-input {
+padding: 2px;
+border: 1px solid #999;
+width: 150px;
+height: 20px;
+}
+
+.search-btn-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 5px;
+}
+
+.table-area {
+  flex: 1;
+  background-color: #fff;
+  border: none !important;
+}
+
+/* Clean Single Footer */
+.blue-footer {
+  background-color: #87ceeb !important;
+  padding: 10px 20px;
+  margin-top: auto;
+  border: none !important;       /* Removes all borders */
+  border-top: 0 !important;      /* Specifically kills the top line */
+  box-shadow: none !important;   /* Removes any shadow */
+}
+
+.footer-content {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.left-btns, .right-btns {
+display: flex;
+gap: 10px;
+}
+
+.copy-text {
+font-size: 11px;
+font-weight: bold;
+color: #000;
+}
+
+.btn-classic {
+padding: 2px 12px;
+font-size: 11px;
+background-color: #fff;
+border: 1px solid #000;
+cursor: pointer;
+box-shadow: 1px 1px 1px #888;
+}
