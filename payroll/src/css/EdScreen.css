@@ -1,0 +1,159 @@
+.ed-screen-wrapper {
+background-color: #fff;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+.header-bar {
+background-color: #87ceeb !important;
+padding: 8px 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.header-title {
+color: #fff !important;
+font-size: 13px;
+font-weight: bold;
+}
+
+.search-box {
+background-color: #fff;
+padding: 2px 8px;
+border-radius: 2px;
+}
+
+.search-text {
+font-size: 11px;
+color: #333;
+}
+
+.filter-section {
+padding: 15px 20px;
+border-bottom: 1px solid #ccc;
+display: flex;
+justify-content: space-between;
+}
+
+.left-filter-group {
+display: flex;
+flex-direction: column;
+gap: 10px;
+flex: 1;
+}
+
+.radio-group {
+display: flex;
+gap: 20px;
+}
+
+.radio-label {
+font-size: 12px;
+display: flex;
+align-items: center;
+gap: 5px;
+}
+
+.service-row {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.label-bold {
+font-size: 11px;
+font-weight: bold;
+}
+
+.service-input {
+padding: 3px;
+border: 1px solid #ccc;
+width: 120px;
+}
+
+.summary-labels-row {
+display: flex;
+gap: 15px;
+font-size: 10px;
+color: #0056b3;
+font-weight: bold;
+margin-top: 5px;
+}
+
+.summary-item {
+border-right: 1px solid #ddd;
+padding-right: 10px;
+}
+
+.val-text {
+color: #333;
+}
+
+.recovery-box {
+border: 1px dashed #0056b3;
+padding: 10px;
+width: 250px;
+font-size: 11px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.recovery-row {
+display: flex;
+justify-content: space-between;
+}
+
+.tabs-container {
+display: flex;
+padding: 15px 20px 0 20px;
+}
+
+.active-tab {
+padding: 5px 15px;
+font-size: 11px;
+border: 1px solid #ccc;
+border-bottom: none;
+background-color: #fff;
+font-weight: bold;
+}
+
+.table-container {
+margin: 0 20px 20px 20px;
+border: 1px solid #ccc;
+flex: 1;
+overflow-y: auto;
+background-color: #fff;
+}
+
+.ed-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.ed-table th {
+background-color: #f8f9fa;
+font-size: 11px;
+text-align: left;
+padding: 8px;
+border-bottom: 1px solid #ccc;
+border-right: 1px solid #eee;
+}
+
+.empty-row {
+text-align: center;
+padding: 100px;
+color: #999;
+font-size: 12px;
+}
+
+.sys-footer {
+background-color: #87ceeb;
+text-align: right;
+padding: 8px 20px;
+font-size: 11px;
+font-weight: bold;
+margin-top: auto;
+}
